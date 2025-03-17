@@ -7,6 +7,9 @@ namespace Application.Interfaces.Activities
         ///<summary>
         ///Para obtener todas las actividades que tiene registradas un usuario.
         ///</summary>>
-        Task<IEnumerable<ActivityResponseDTO>> GetAllAsync();
+        Task<IEnumerable<ActivityResponseDTO>?> GetAllAsync();
+
+        Task<ActivityResponseDTO> CreateAsync(ActivityRequestDTO dto);
     }
+
 }

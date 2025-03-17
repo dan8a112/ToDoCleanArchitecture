@@ -4,7 +4,7 @@
     {
         public DateTime CreationDate;
         public DateTime EndDate;
-        public string? Description;
+        public required string Description;
         public bool Completed;
 
         public int UserId;

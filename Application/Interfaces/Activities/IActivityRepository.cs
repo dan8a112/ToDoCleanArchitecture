@@ -1,4 +1,5 @@
-﻿using Domain.AggregateRoots;
+﻿using Application.DTOs.Activities;
+using Domain.AggregateRoots;
 
 namespace Application.Interfaces.Activities
 {
@@ -9,5 +10,6 @@ namespace Application.Interfaces.Activities
         ///</summary>>
         Task<IEnumerable<Activity>> GetAllAsync();
         Task<Activity?> GetByIdAsync(int id);
+        Task CreateAsync(Activity activity);
     }
 }
