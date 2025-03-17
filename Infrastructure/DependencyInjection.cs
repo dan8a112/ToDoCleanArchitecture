@@ -1,15 +1,12 @@
 
-using Application.DTOs;
 using Application.Interfaces;
 using Application.Interfaces.Activities;
 using Application.Interfaces.ActivityType;
 using Application.Interfaces.Tasks;
 using Application.Interfaces.User;
 using Application.Services;
-using Domain.Entities;
 using Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Identity.Client;
 
 namespace Infrastructure
 {

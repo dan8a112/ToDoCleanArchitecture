@@ -1,10 +1,12 @@
 ﻿using Application.DTOs.ActivityTypes;
 using Application.DTOs.Users;
+using Application.DTOs.Tasks;
 
 namespace Application.DTOs.Activities
 {
     public class ActivityResponseDTO
     {
+        public int Id;
         public DateTime CreationDate;
         public DateTime EndDate;
         public string? Description;
@@ -15,7 +17,8 @@ namespace Application.DTOs.Activities
 
         public UserResponseDTO? UserResponseDTO;
         public ActivityTypeResponseDTO? ActivityTypeResponseDTO;
-        public required List<Domain.Entities.Task> Tasks;
+
+        public required List<TaskResponseDTO> Tasks;
     }
 }
 
