@@ -20,23 +20,20 @@ public class BackendDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // User ||--o{ Activity
-        modelBuilder.Entity<Activity>()
-            .HasOne(u => u.User)
+        modelBuilder.Entity<Activity>() // Una Activity tiene un user
+            .HasOne(a => a.User)
             .WithMany()
-            .HasForeignKey(u => u.UserId);
+            .HasForeignKey(a => a.UserId);
         
-        // ActivityType ||--o{ Activity
-        modelBuilder.Entity<Activity>()
+        modelBuilder.Entity<Activity>() // Una Activity tiene un type
             .HasOne(a => a.ActivityType)
             .WithMany()
             .HasForeignKey(a => a.ActivityTypeId);
         
-        // Activity ||--o{ Task
-        modelBuilder.Entity<Task>()
-            .HasOne(a => a.Activity)
+        modelBuilder.Entity<Task>() // Una task tiene una actividad
+            .HasOne(t => t.Activity)
             .WithMany()
-            .HasForeignKey(a => a.ActivityId);
+            .HasForeignKey(t => t.ActivityId);
         
     }
 }

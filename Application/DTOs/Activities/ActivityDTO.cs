@@ -1,18 +1,17 @@
-﻿using Domain.Entities;
+﻿using Task = Domain.Entities.Task;
 
 namespace Application.DTOs.Activities
 {
-    public  class ActivityDTO
+    public class ActivityDTO
     {
-        public DateTime CreationDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public string Description { get; set; } = string.Empty;
-        public bool Completed { get; set; }
+        public DateTime CreationDate;
+        public DateTime EndDate;
+        public string Description = string.Empty;
+        public bool Completed;
 
-        public int UserId { get; set; }
-        public User? User { get; set; }
+        public int UserId;
+        public int ActivityTypeId;
 
-        public int ActivityTypeId { get; set; }
-        public ActivityType? ActivityType { get; set; }
+        public required List<Task> Tasks;
     }
 }
