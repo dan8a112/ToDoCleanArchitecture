@@ -32,7 +32,7 @@ public class BackendDbContext : DbContext
         
         modelBuilder.Entity<Task>() // Una task tiene una actividad
             .HasOne(t => t.Activity)
-            .WithMany()
+            .WithMany(a=> a.Tasks)
             .HasForeignKey(t => t.ActivityId);
         
     }
