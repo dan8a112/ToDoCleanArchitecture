@@ -1,6 +1,8 @@
+.idea
 .vs
 .github
 */bin
 */obj
 API/.env
 */Migrations
+/ToDoExample.sln.DotSettings.user

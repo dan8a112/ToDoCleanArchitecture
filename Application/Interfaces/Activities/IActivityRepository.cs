@@ -8,5 +8,6 @@ namespace Application.Interfaces.Activities
         ///Para obtener todas las actividades que tiene registradas un usuario.
         ///</summary>>
         Task<IEnumerable<Activity>> GetAllAsync();
+        Task<Activity?> GetByIdAsync(int id);
     }
 }
