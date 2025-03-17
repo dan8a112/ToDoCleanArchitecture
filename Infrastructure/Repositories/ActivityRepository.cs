@@ -39,5 +39,11 @@ namespace Infrastructure.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task<bool> UpdateAsync(Activity activity)
+        {
+            _context.Activities.Update(activity);
+            return await _context.SaveChangesAsync() > 0;
+        }
     }
 }

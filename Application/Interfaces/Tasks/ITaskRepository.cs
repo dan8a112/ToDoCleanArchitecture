@@ -6,4 +6,5 @@ public interface ITaskRepository
     Task<Domain.Entities.Task?> GetByIdAsync(int id);
     Task AddAsync(Domain.Entities.Task task);
     Task<bool> DeleteAsync(int id);
+    Task<bool> UpdateAsync(Domain.Entities.Task task);
 }

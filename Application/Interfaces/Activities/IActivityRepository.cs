@@ -9,5 +9,6 @@ namespace Application.Interfaces.Activities
         Task<IEnumerable<Activity>> GetAllAsyncByUser( int idUser );
         Task<Activity?> GetByIdAsync(int id);
         Task CreateAsync(Activity activity);
+        Task<bool> UpdateAsync(Activity activity);
     }
 }

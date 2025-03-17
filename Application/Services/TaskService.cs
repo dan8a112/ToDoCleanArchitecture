@@ -72,4 +72,16 @@ public class TaskService : ITaskService
             FinishDate = task.FinishDate
         };
     }
+
+    public async Task<bool> CompleteTaskAsync(int id)
+    {
+        var task = await _taskRepository.GetByIdAsync(id);
+        if (task is null)
+        {
+            return false;
+        }
+        task.Completed = true;
+        task.FinishDate = DateTime.Now;
+        return await _taskRepository.UpdateAsync(task);
+    }
 }

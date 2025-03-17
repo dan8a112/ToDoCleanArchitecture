@@ -20,5 +20,14 @@ namespace API.Controllers
             var activities = await _activityService.GetAllAsyncByUser(idUser);
             return activities is null ? NotFound($"No existe el usuario con id {idUser} por la que se desea filtrar") : Ok(activities);
         }
+
+        [HttpPut("complete/{id}")]
+        public async Task<IActionResult> CompleteActivity(int id)
+        {
+            var result = await _activityService.CompleteActivity(id);
+            return result
+                ? NoContent()
+                : NotFound($"No se encontro la actividad con el id {id}");
+        }
     }
 }
