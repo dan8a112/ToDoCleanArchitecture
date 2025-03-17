@@ -23,5 +23,10 @@ namespace Infrastructure.Repositories
         {
             return await _context.Activities.FindAsync(id);
         }
+
+        public Task CreateAsync(Activity activity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

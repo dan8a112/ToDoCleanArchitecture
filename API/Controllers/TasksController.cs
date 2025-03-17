@@ -15,7 +15,7 @@ public class TasksController: ControllerBase
         _taskService = taskService ;
     }
 
-    [HttpGet("{activityId}")]
+    [HttpGet("getByActivity/{activityId}")]
     public async Task<IActionResult> GetAllByActivity(int activityId)
     {
         var tasks = await _taskService.GetAllByActivityAsync(activityId);
