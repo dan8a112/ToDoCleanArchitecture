@@ -18,3 +18,5 @@ namespace Application.DTOs.Activities
         public required List<Domain.Entities.Task> Tasks;
     }
 }
+
+
