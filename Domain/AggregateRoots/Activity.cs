@@ -9,11 +9,12 @@ public class Activity : AggregateRoot
     public DateTime EndDate { get; set; }
     public string Description { get; set; } = string.Empty;
     public bool Completed { get; set; }
-    
+
     public int UserId { get; set; }
     public User? User { get; set; }
-    
+
     public int ActivityTypeId { get; set; }
     public ActivityType? ActivityType { get; set; }
-    
+
+    public required List<Entities.Task> Tasks { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿using Application.DTOs.ActivityType;
+﻿using Application.DTOs.ActivityTypes;
 
 namespace Application.Interfaces.ActivityType;
 

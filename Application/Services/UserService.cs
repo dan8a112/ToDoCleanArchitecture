@@ -1,4 +1,4 @@
-﻿using Application.DTOs.User;
+﻿using Application.DTOs.Users;
 using Application.Interfaces.User;
 using Domain.Entities;
 
