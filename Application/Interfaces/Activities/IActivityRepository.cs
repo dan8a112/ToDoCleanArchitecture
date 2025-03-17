@@ -1,4 +1,5 @@
-﻿using Domain.AggregateRoots;
+﻿using Application.DTOs.Activities;
+using Domain.AggregateRoots;
 
 namespace Application.Interfaces.Activities
 {
@@ -8,5 +9,7 @@ namespace Application.Interfaces.Activities
         ///Para obtener todas las actividades que tiene registradas un usuario.
         ///</summary>>
         Task<IEnumerable<Activity>> GetAllAsync();
+
+        Task CreateAsync(Activity activity);
     }
 }
