@@ -1,4 +1,4 @@
-﻿namespace Application.DTOs.Task;
+﻿namespace Application.DTOs.Tasks;
 
 public class TaskResponseDTO
 {

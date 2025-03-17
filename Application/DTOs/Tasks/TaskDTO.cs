@@ -1,6 +1,6 @@
 ﻿using Domain.AggregateRoots;
 
-namespace Application.DTOs.Task;
+namespace Application.DTOs.Tasks;
 
 public class TaskDTO
 {

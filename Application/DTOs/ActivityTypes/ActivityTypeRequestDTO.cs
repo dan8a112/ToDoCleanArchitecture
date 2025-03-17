@@ -1,4 +1,4 @@
-﻿namespace Application.DTOs.ActivityType;
+﻿namespace Application.DTOs.ActivityTypes;
 
 public class ActivityTypeRequestDTO
 {
