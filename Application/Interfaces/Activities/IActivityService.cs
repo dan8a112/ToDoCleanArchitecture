@@ -10,6 +10,8 @@ namespace Application.Interfaces.Activities
         Task<IEnumerable<ActivityResponseDTO>?> GetAllAsync();
 
         Task<ActivityResponseDTO> CreateAsync(ActivityRequestDTO dto);
+
+        Task<IEnumerable<ActivityResponseDTO>> GetAllAsyncByUser(int idUser);
     }
 
 }
