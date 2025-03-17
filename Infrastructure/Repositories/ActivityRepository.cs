@@ -18,5 +18,10 @@ namespace Infrastructure.Repositories
 
             return await _context.Activities.ToListAsync();
         }
+
+        public async Task<Activity?> GetByIdAsync(int id)
+        {
+            return await _context.Activities.FindAsync(id);
+        }
     }
 }
