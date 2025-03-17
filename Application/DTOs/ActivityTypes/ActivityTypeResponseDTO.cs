@@ -1,6 +1,6 @@
-﻿namespace Application.DTOs.ActivityType;
+﻿namespace Application.DTOs.ActivityTypes;
 
-public class ActivityTypeDTO
+public class ActivityTypeResponseDTO
 {
     public int Id;
     public string Name = string.Empty;
