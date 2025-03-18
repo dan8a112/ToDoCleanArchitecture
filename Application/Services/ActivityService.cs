@@ -5,16 +5,22 @@ using Application.DTOs.Tasks;
 using Application.Interfaces.Activities;
 using Domain.AggregateRoots;
 using TaskEntity =  Domain.Entities.Task;
+using Application.Interfaces.Tasks;
+using System.Diagnostics;
+using Activity = Domain.AggregateRoots.Activity;
+using Application.Interfaces.User;
 
 namespace Application.Services
 {
     public class ActivityService: IActivityService
     {
         private readonly IActivityRepository _repository;
+        private readonly IUserRepository _userRepository;
 
-        public ActivityService(IActivityRepository repository)
+        public ActivityService(IActivityRepository repository, IUserRepository userRepository)
         {
             _repository = repository;
+            _userRepository = userRepository;
         }
 
         public async Task<ActivityResponseDTO> CreateAsync(ActivityRequestDTO dto)
@@ -51,15 +57,13 @@ namespace Application.Services
             };
         }
 
-        public async Task<IEnumerable<ActivityResponseDTO>?> GetAllAsync()
-        {
-            var activities = await _repository.GetAllAsync();
-            return null;
-        }
-
         public async Task<IEnumerable<ActivityResponseDTO>> GetAllAsyncByUser( int idUser )
         {
-            var activities = await _repository.GetAllAsyncByUser(idUser);
+            var user = await _userRepository.GetByIdAsync(idUser);
+            if (user is null) return null;
+
+            //Se obtienen las actividades que coinciden con userId
+            var activities = (await _repository.GetAllAsync()).Where(u => u.UserId == idUser);
 
             return activities.Select(a => new ActivityResponseDTO
             {
@@ -85,7 +89,7 @@ namespace Application.Services
                     Active = a.ActivityType.Active
                 } : null,
 
-                Tasks = a.Tasks.Select(t => new TaskResponseDTO
+                Tasks = a.Tasks?.Select(t => new TaskResponseDTO
                 {
                     Id = t.Id,
                     Description = t.Description,
@@ -93,9 +97,53 @@ namespace Application.Services
                     StartDate = t.StartDate,
                     FinishDate = t.FinishDate,
                     ActivityId = t.ActivityId
-                }).ToList()
+                }).ToList() ?? new List<TaskResponseDTO>()
             });
-            
+
+        }
+
+        public async Task<IEnumerable<ActivityResponseDTO>> GetAllAsyncByUserAndDate(int idUser, DateTime date)
+        {
+            var user = await _userRepository.GetByIdAsync(idUser);
+            if (user is null) return null;
+
+            //Se obtienen las actividades que coinciden con userId
+            var activities = (await _repository.GetAllAsync()).Where(a => ( a.UserId == idUser && a.CreationDate == date));
+
+            return activities.Select(a => new ActivityResponseDTO
+            {
+                Id = a.Id,
+                CreationDate = a.CreationDate,
+                EndDate = a.EndDate,
+                Description = a.Description,
+                Completed = a.Completed,
+
+                UserId = a.UserId,
+                UserResponseDTO = a.User != null ? new UserResponseDTO
+                {
+                    Id = a.User.Id,
+                    Name = a.User.Name,
+                    Email = a.User.Email
+                } : null,
+
+                ActivityTypeId = a.ActivityTypeId,
+                ActivityTypeResponseDTO = a.ActivityType != null ? new ActivityTypeResponseDTO
+                {
+                    Id = a.ActivityType.Id,
+                    Name = a.ActivityType.Name,
+                    Active = a.ActivityType.Active
+                } : null,
+
+                Tasks = a.Tasks?.Select(t => new TaskResponseDTO
+                {
+                    Id = t.Id,
+                    Description = t.Description,
+                    Completed = t.Completed,
+                    StartDate = t.StartDate,
+                    FinishDate = t.FinishDate,
+                    ActivityId = t.ActivityId
+                }).ToList() ?? new List<TaskResponseDTO>()
+            });
         }
 
         public async Task<bool> CompleteActivity(int id)

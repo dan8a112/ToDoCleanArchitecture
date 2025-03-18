@@ -21,6 +21,19 @@ namespace Infrastructure.Repositories
 
         public async Task<IEnumerable<Activity>> GetAllAsyncByUser( int idUser )
         {
+
+            return await _context.Activities
+                                 .Where(a => a.UserId == idUser)
+                                 .Include(a => a.Tasks)
+                                 .Include(a => a.ActivityType)
+                                 .Include(a => a.User)
+                                 .OrderByDescending(a => a.CreationDate)
+                                 .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Activity>> GetAllAsyncByUserAndDate(int idUser, DateTime date)
+        {
+
             return await _context.Activities
                                  .Where(a => a.UserId == idUser)
                                  .Include(a => a.Tasks)
