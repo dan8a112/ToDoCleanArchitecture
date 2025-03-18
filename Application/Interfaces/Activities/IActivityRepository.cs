@@ -10,5 +10,6 @@ namespace Application.Interfaces.Activities
         Task<IEnumerable<Activity>> GetAllAsyncByUserAndDate(int idUser, DateTime date);
         Task<Activity?> GetByIdAsync(int id);
         Task CreateAsync(Activity activity);
+        Task<bool> UpdateAsync(Activity activity);
     }
 }

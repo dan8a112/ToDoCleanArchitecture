@@ -145,5 +145,15 @@ namespace Application.Services
                 }).ToList() ?? new List<TaskResponseDTO>()
             });
         }
+
+        public async Task<bool> CompleteActivity(int id)
+        {
+            var activity = await _repository.GetByIdAsync(id);
+            if (activity is null) return false;
+
+            activity.Completed = true;
+            activity.EndDate = DateTime.Now;
+            return await _repository.UpdateAsync(activity);
+           }
     }
 }

@@ -31,4 +31,13 @@ public class TasksController: ControllerBase
         var createdTask = await _taskService.CreateAsync(dto);
         return CreatedAtAction(nameof(Create), new { id = createdTask.Id }, createdTask);
     }
+
+    [HttpPut("completeTask/{id}")]
+    public async Task<IActionResult> CompleteTask(int id)
+    {
+        var result = await _taskService.CompleteTaskAsync(id);
+        return result 
+            ? NoContent()
+            : NotFound($"No se encontró la tarea con id {id}");
+    }
 }
